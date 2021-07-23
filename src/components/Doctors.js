@@ -1,19 +1,21 @@
-import React from 'react'
+ 
 import Doctor from './Doctor'
 
-
 function Doctors(props) {
+    const doctors = props.doctorsList.map(doctor => <Doctor key={doctor.id} {...doctor} />)
+
+    const handleChooseADoctor = () => {
+        // return doctor.id === id
+    }
     return(
         <>
-        <div>
-       
-        </div>
         <div className="lists">
-        {/* < Doctor doctor={this.state.doctor}/> */}
+        {/* {doctors} */}
   </div>
-  <button id='select-doctor' onClick={alert('Hello')}>Choose A Doctor</button>
+  <button id='select-doctor' onClick={handleChooseADoctor}>Choose A Doctor</button>
   </>
 
     )
 }
 export default Doctors;
+

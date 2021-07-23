@@ -20,15 +20,16 @@ class App extends Component {
       fetch('http://localhost:3000/doctors')
       .then(resp => resp.json())
       .then(json => {
-        debugger
         const reviews = []
-        const doctors = json.data.map(docObj => {
-          reviews.push(docObj.reviews.flat())
-          return {name: docObj.name, firstName: docObj.first_name, lastName: docObj.last_name, address: docObj.address, id: docObj.id} 
+        const doctors = []
+        json.data.map(docObj => {
+          reviews.push(docObj.attributes.reviews)
+          doctors.push({name: docObj.attributes.name, firstName: docObj.attributes.first_name, lastName: docObj.attributes.last_name, address: docObj.attributes.address, id: docObj.id} ) 
         })
+
         this.setState({
           doctorsList: doctors,
-          reviewsList: reviews
+          reviewsList: reviews.flat()
         })
       })
       .catch(err => console.error(err))
