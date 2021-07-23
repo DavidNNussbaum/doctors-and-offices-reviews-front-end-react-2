@@ -46,7 +46,8 @@ class App extends Component {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} /> 
-        <Route path="/doctors" render={(props) => <Doctors doctorsList={this.state.doctorsList} routeProps={props} /> }/>
+        <Route path="/doctors" render={(props) => <Doctors doctorsList={this.state.doctorsList} reviewsList={this.state.reviewsList} routeProps={props} /> }/>
+        <Route path="`/doctors/${doctor_id}`" render={(props) => <Doctor doctor={doctor.id === e.target.value review={review.doctor_id === doctor.id}} />
         {/* <Route path="/logon" component={Logon}/> 
         <Route path="/signup" component={Signup}/>
         <Route path="/logoff" component={Logoff}/> */}
