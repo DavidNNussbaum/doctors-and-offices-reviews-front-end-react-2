@@ -1,13 +1,12 @@
-import App from'../containers/App'
-
-function Doctor({name, address}) {
+ import Reviews from './Reviews'
+ function Doctor({name, address, reviews}) {
      
     // const reviews = props.reviewsList.map(reviews => reviews.doctor.id === props.doctor.id />)
     return(
         <div>
-      <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.query} onChange={event => this.setState({Query: event.target.value})} />
-      </form>
+          <h1>{name}</h1>
+          <h3>{address}</h3>
+          <Reviews reviews={reviews}/>
         </div>
     
     )
