@@ -1,24 +1,31 @@
+import React, { PureComponent} from 'react';
  
+
 import Doctor from './Doctor'
 
-function Doctors(props) {
-    // const doctors = props.doctorsList.map(doctor => <Doctor key={doctor.id} {...doctor} />)
-    const doctorOptions = props.doctorsList.map(doctor => <option value={doctor.id}>{doctor.name} - {doctor.address} </option>)
-    const handleChooseADoctor = (e) => {
-        const doctor = props.doctorsList.find((doctor) => doctor.id === e.target.value)
-        const reviews = props.reviewsList.filter((review) => review.doctor_id === e.target.value)
-        debugger
-        props.routeProps.history.push({pathName: `/doctors/${doctor.id}`, state: {doctor, reviews}})
+class Doctors extends PureComponent {
+    state = {
+        doctor: null,
+        // selection: ''
     }
-    return(
-        <>
-        <div className="lists">
-        {/* {doctors} */}
-  </div>
-  <select id='select-doctor' onChange={handleChooseADoctor}>{doctorOptions}</select>
-  </>
-
-    )
+    // const doctors = props.doctorsList.map(doctor => <Doctor key={doctor.id} {...doctor} />)
+    doctorOptions = () => this.props.doctorsList.map(doctor => <option value={doctor.id}>{doctor.name} - {doctor.address} </option>)
+    handleChooseADoctor = (e) => {
+        // this.setState({
+        //     selection: e.target.value
+        // })
+        const doctor = this.props.doctorsList.find((doctor) => doctor.id === parseInt(e.target.value))
+        this.setState({ doctor })
+       
+    }
+    render() {
+        return (
+            <>
+                <select id='select-doctor' onChange={this.handleChooseADoctor}>{this.doctorOptions()}</select>
+               {!!this.state.doctor ? <Doctor {...this.state.doctor}/> : <h3>Select A Doctor</h3>} 
+            </>
+        )
+    }
 }
 
     export default Doctors;
